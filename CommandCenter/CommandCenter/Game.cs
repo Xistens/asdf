@@ -22,7 +22,11 @@ namespace CommandCenter
 
         private void btnName_Click(object sender, EventArgs e)
         {
+            Formulas xp = new Formulas();
+            Int32 lvl = Int32.Parse(txbLvl.Text);
 
+            lblName.Text = xp.GetGrayLevel(lvl).ToString();
+            lblZeroDiff.Text = xp.GetZeroDifference(lvl).ToString();
         }
     }
 }
