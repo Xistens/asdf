@@ -4,17 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Engine
+namespace src
 {
-    public class Player
+    public class Player : Unit
     {
         public string _Name { get; set; }
-        public int _ID { get; set; }
-        
-        public Player(string name, int id)
+
+        private Player(string name, uint currentHealth, uint maximumHealth) : base(currentHealth, maximumHealth)
         {
             _Name = name;
-            _ID = id;
+        }
+
+        public static Player CreateDefaultPlayer()
+        {
+            Player player = new Player("TEST", 1, 1);
+            return player;
         }
 
     }

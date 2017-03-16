@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Engine;
+using src;
 
 namespace CommandCenter
 {
@@ -23,10 +23,11 @@ namespace CommandCenter
         private void btnName_Click(object sender, EventArgs e)
         {
             Formulas xp = new Formulas();
-            Int32 lvl = Int32.Parse(txbLvl.Text);
+            uint pl_level = uint.Parse(txbLvl.Text);
+            uint victim_level = uint.Parse(txtEnemyLevel.Text);
 
-            lblName.Text = xp.GetGrayLevel(lvl).ToString();
-            lblZeroDiff.Text = xp.GetZeroDifference(lvl).ToString();
+            lblGain.Text = xp.BaseGain(pl_level, victim_level).ToString();
+            lblXPNeeded.Text = xp.XPRequired(pl_level).ToString();
         }
     }
 }
