@@ -9,10 +9,12 @@ namespace Engine
     public class Player
     {
         public string _Name { get; set; }
+        public int _ID { get; set; }
         
-        public Player(string name)
+        public Player(string name, int id)
         {
             _Name = name;
+            _ID = id;
         }
 
     }
