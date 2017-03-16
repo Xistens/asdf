@@ -2,7 +2,7 @@
 
 namespace src
 {
-    public class Formulas
+    public class Experience
     {
         // What level the mob must be to be "grey" for player
         protected uint GetGrayLevel(uint pl_level)
@@ -36,7 +36,7 @@ namespace src
             return 17;
         }
 
-        // Find factor to use for calculating player xp
+        // Calculate factor to use for calculating player xp
         protected float BaseGainLevelFactor(uint pl_level, uint victim_level)
         {
             // Enemy is higher level
@@ -60,6 +60,7 @@ namespace src
             return 0;
         }
 
+        
         public uint BaseGain(uint pl_level, uint victim_level)
         {
             const uint nBaseExp = 45;

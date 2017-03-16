@@ -14,20 +14,46 @@ namespace CommandCenter
 {
     public partial class Game : Form
     {
+        // Just testing... everything will be removed
         private Player _Player;
+
         public Game()
         {
             InitializeComponent();
+
+            _Player = Player.CreateDefaultPlayer();
+            UpdateDisplay();
+        }
+
+        private void UpdateDisplay()
+        {
+            uint lvl = _Player.UnitLevel;
+            Experience xp = new Experience();
+            uint plPlayerLevel = _Player.UnitLevel;
+
+            lblGain.Text = xp.BaseGain(plPlayerLevel, plPlayerLevel).ToString();
+            lblXPNeeded.Text = xp.XPRequired(_Player.UnitLevel).ToString();
+            lblPl_Level.Text = lvl.ToString();
+            lblCurrentEXP.Text = _Player.ExperiencePoints.ToString();
         }
 
         private void btnName_Click(object sender, EventArgs e)
         {
-            Formulas xp = new Formulas();
-            uint pl_level = uint.Parse(txbLvl.Text);
-            uint victim_level = uint.Parse(txtEnemyLevel.Text);
 
-            lblGain.Text = xp.BaseGain(pl_level, victim_level).ToString();
-            lblXPNeeded.Text = xp.XPRequired(pl_level).ToString();
+            uint giveExp = uint.Parse(txtGiveXp.Text);
+
+            _Player.SetExperience(giveExp);
+            UpdateDisplay();
+
+        }
+
+        private void btnBaseXP_Click(object sender, EventArgs e)
+        {
+            uint plPlayerLevel = _Player.UnitLevel;
+            Experience EXP = new Experience();
+            uint giveExp = EXP.BaseGain(plPlayerLevel, plPlayerLevel);
+            _Player.SetExperience(giveExp);
+            UpdateDisplay();
         }
     }
 }

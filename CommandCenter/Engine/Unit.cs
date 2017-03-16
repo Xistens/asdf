@@ -16,13 +16,27 @@ namespace src
             set { _currentHealth = value; }
         }
 
-        public uint MaximumHealth { get; set; }
-        public bool IsDead { get; set; }
+        protected uint MaximumHealth { get; set; }
+        public bool IsDead
+        {
+            get { return CurrentHealth <= 0; }
+            set {}
+        }
+
+        private uint _level;
+        public uint UnitLevel
+        {
+            get { return _level; }
+            protected set { _level = value; }
+        }
+
 
         public Unit(uint currentHealth, uint maximumHealth)
         {
             _currentHealth = currentHealth;
             MaximumHealth = maximumHealth;
+            IsDead = false;
+            _level = 1;
         }
 
         // Place attack functions here?
