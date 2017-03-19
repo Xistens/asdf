@@ -2,10 +2,10 @@
 
 namespace src
 {
-    public class Experience
+    static class Experience
     {
         // What level the mob must be to be "grey" for player
-        protected uint GetGrayLevel(uint pl_level)
+        private static uint GetGrayLevel(uint pl_level)
         {
             if (pl_level <= 5)
                 return 0;
@@ -20,7 +20,7 @@ namespace src
         // is a linear function of the Mob Level.The amount of experience reaches zero
         // when the difference between the Char Level and Mob Level reaches a certain point.
         // This is called the Zero Difference value
-        protected uint GetZeroDifference(uint pl_level)
+        private static uint GetZeroDifference(uint pl_level)
         {
             if (pl_level < 8) return 5;
             if (pl_level < 10) return 6;
@@ -37,7 +37,7 @@ namespace src
         }
 
         // Calculate factor to use for calculating player xp
-        protected float BaseGainLevelFactor(uint pl_level, uint victim_level)
+        private static float BaseGainLevelFactor(uint pl_level, uint victim_level)
         {
             // Enemy is higher level
             if (victim_level >= pl_level)
@@ -61,7 +61,7 @@ namespace src
         }
 
         
-        public uint BaseGain(uint pl_level, uint victim_level)
+        public static uint BaseGain(uint pl_level, uint victim_level)
         {
             const uint nBaseExp = 45;
             
@@ -71,7 +71,7 @@ namespace src
 
         
         // Experience points needed for next level
-        public uint XPRequired(uint pl_level)
+        public static uint XPRequired(uint pl_level)
         {
             return ((8 * pl_level) * BaseGain(pl_level, pl_level));
         }

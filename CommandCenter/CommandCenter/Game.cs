@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using src;
+using Helpers;
 
 namespace CommandCenter
 {
@@ -23,6 +24,7 @@ namespace CommandCenter
 
             _Player = Player.CreateDefaultPlayer();
             UpdateDisplay();
+            
         }
 
         private void UpdateDisplay()
@@ -35,6 +37,9 @@ namespace CommandCenter
             lblXPNeeded.Text = xp.XPRequired(_Player.UnitLevel).ToString();
             lblPl_Level.Text = lvl.ToString();
             lblCurrentEXP.Text = _Player.ExperiencePoints.ToString();
+
+            AppTimer time = new AppTimer();
+            lblTime.Text = time.Test().ToString();
         }
 
         private void btnName_Click(object sender, EventArgs e)

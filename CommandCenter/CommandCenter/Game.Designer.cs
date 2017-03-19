@@ -46,6 +46,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblCurrentEXP = new System.Windows.Forms.Label();
             this.btnBaseXP = new System.Windows.Forms.Button();
+            this.lblTime = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnName
@@ -196,11 +197,21 @@
             this.btnBaseXP.UseVisualStyleBackColor = true;
             this.btnBaseXP.Click += new System.EventHandler(this.btnBaseXP_Click);
             // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Location = new System.Drawing.Point(56, 37);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(33, 13);
+            this.lblTime.TabIndex = 23;
+            this.lblTime.Text = "TIME";
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(523, 494);
+            this.Controls.Add(this.lblTime);
             this.Controls.Add(this.btnBaseXP);
             this.Controls.Add(this.lblCurrentEXP);
             this.Controls.Add(this.label7);
@@ -242,6 +253,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblCurrentEXP;
         private System.Windows.Forms.Button btnBaseXP;
+        private System.Windows.Forms.Label lblTime;
     }
 }
 

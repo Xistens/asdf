@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace src
 {
-    public class Unit
+    public abstract class Unit
     {
         private uint _currentHealth;
 
