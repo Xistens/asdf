@@ -34,9 +34,10 @@ namespace src
         public bool IsDead
         {
             get { return CurrentHealth <= 0; }
-            private set {}
+            protected set {}
         }
 
+        // Level of the unit, player or monster
         public uint UnitLevel
         {
             get { return _level; }
@@ -58,6 +59,7 @@ namespace src
 
         // Attacks
 
+        // Is the attack a critical hit?
         private bool IsCrit()
         {
             int critChance = unit_crit_chance;
@@ -68,6 +70,7 @@ namespace src
             return false;
         }
 
+        // Calculating base damage
         public int CalculateDamage()
         {
             int min_damage, max_damage;
@@ -98,7 +101,11 @@ namespace src
 
             // Just testing... Not intended here
             if (IsCrit())
+            {
                 RaiseMessage("Critical hit!", true);
+                min_damage *= 2;
+                max_damage *= 2;
+            }
 
             return RandomNumberGenerator.NumberBetween(min_damage, max_damage);
         }

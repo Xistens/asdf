@@ -28,6 +28,11 @@ namespace src
             return player;
         }
 
+        public List<Weapon> Weapons
+        {
+            get { return PlayerInventory.Where(x => x.Details is Weapon).Select(x => x.Details as Weapon).ToList(); }
+        }
+
         public void SetCurrentWeapon(int id)
         {
             CurrentWeapon = (Weapon)World.ItemByID(id);

@@ -54,6 +54,7 @@
             this.cboWeapon = new System.Windows.Forms.ComboBox();
             this.lblCurrentWeapon = new System.Windows.Forms.Label();
             this.dgvInventory = new System.Windows.Forms.DataGridView();
+            this.btnAddWeapon = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWeapons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
             this.SuspendLayout();
@@ -256,6 +257,7 @@
             this.dgvWeapons.Name = "dgvWeapons";
             this.dgvWeapons.ReadOnly = true;
             this.dgvWeapons.RowHeadersVisible = false;
+            this.dgvWeapons.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvWeapons.Size = new System.Drawing.Size(165, 191);
             this.dgvWeapons.TabIndex = 27;
             // 
@@ -292,11 +294,22 @@
             this.dgvInventory.Size = new System.Drawing.Size(165, 191);
             this.dgvInventory.TabIndex = 30;
             // 
+            // btnAddWeapon
+            // 
+            this.btnAddWeapon.Location = new System.Drawing.Point(521, 29);
+            this.btnAddWeapon.Name = "btnAddWeapon";
+            this.btnAddWeapon.Size = new System.Drawing.Size(90, 26);
+            this.btnAddWeapon.TabIndex = 31;
+            this.btnAddWeapon.Text = "Add Weapon";
+            this.btnAddWeapon.UseVisualStyleBackColor = true;
+            this.btnAddWeapon.Click += new System.EventHandler(this.btnAddWeapon_Click);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 494);
+            this.Controls.Add(this.btnAddWeapon);
             this.Controls.Add(this.dgvInventory);
             this.Controls.Add(this.lblCurrentWeapon);
             this.Controls.Add(this.cboWeapon);
@@ -356,6 +369,7 @@
         private System.Windows.Forms.ComboBox cboWeapon;
         private System.Windows.Forms.Label lblCurrentWeapon;
         private System.Windows.Forms.DataGridView dgvInventory;
+        private System.Windows.Forms.Button btnAddWeapon;
     }
 }
 

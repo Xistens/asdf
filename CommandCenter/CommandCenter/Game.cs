@@ -65,8 +65,8 @@ namespace CommandCenter
             dgvInventory.DataSource = _Player.PlayerInventory;
 
 
-            // ComboBox
-            cboWeapon.DataSource = World.weapons;
+            // ComboBox players weapon from inventory
+            cboWeapon.DataSource = _Player.Weapons;
             cboWeapon.DisplayMember = "Name";
             cboWeapon.ValueMember = "Id";
 
@@ -92,14 +92,16 @@ namespace CommandCenter
             rtbEvents.ScrollToCaret();
         }
 
+
         private void PlayerOnPropertyChange(Object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName == "Weapon")
+            if (propertyChangedEventArgs.PropertyName == "Weapons")
             {
-                cboWeapon.DataSource = World.weapons;
+                cboWeapon.DataSource = _Player.Weapons;
             }
         }
 
+        // Event - Set weapon to players current weapon
         private void cboWeapons_SelectedIndexChanged(object sender, EventArgs e)
         {
             int weaponId = Convert.ToInt32(cboWeapon.SelectedValue);
@@ -142,6 +144,12 @@ namespace CommandCenter
         private void btnAttack_Click(object sender, EventArgs e)
         {
             lblDamage.Text = _Player.CalculateDamage().ToString();
+        }
+
+        private void btnAddWeapon_Click(object sender, EventArgs e)
+        {
+            _Player.AddItemToInventory(World.weapons[2], 1);
+            cboWeapon.DataSource = _Player.Weapons;
         }
     }
 }
