@@ -25,6 +25,8 @@ namespace src
         public event EventHandler<MessageEventArgs> OnMessage;
         public event PropertyChangedEventHandler PropertyChanged;
 
+
+
         public uint CurrentHealth
         {
             get { return _currentHealth; }
