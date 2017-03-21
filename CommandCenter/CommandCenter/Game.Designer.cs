@@ -47,6 +47,15 @@
             this.lblCurrentEXP = new System.Windows.Forms.Label();
             this.btnBaseXP = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
+            this.btnAttack = new System.Windows.Forms.Button();
+            this.lblDamage = new System.Windows.Forms.Label();
+            this.rtbEvents = new System.Windows.Forms.RichTextBox();
+            this.dgvWeapons = new System.Windows.Forms.DataGridView();
+            this.cboWeapon = new System.Windows.Forms.ComboBox();
+            this.lblCurrentWeapon = new System.Windows.Forms.Label();
+            this.dgvInventory = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvWeapons)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
             this.SuspendLayout();
             // 
             // btnName
@@ -75,7 +84,7 @@
             // lblGain
             // 
             this.lblGain.AutoSize = true;
-            this.lblGain.Location = new System.Drawing.Point(279, 96);
+            this.lblGain.Location = new System.Drawing.Point(410, 159);
             this.lblGain.Name = "lblGain";
             this.lblGain.Size = new System.Drawing.Size(43, 13);
             this.lblGain.TabIndex = 6;
@@ -110,7 +119,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(230, 96);
+            this.label6.Location = new System.Drawing.Point(361, 159);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 13);
             this.label6.TabIndex = 13;
@@ -119,7 +128,7 @@
             // lblXPNeeded
             // 
             this.lblXPNeeded.AutoSize = true;
-            this.lblXPNeeded.Location = new System.Drawing.Point(281, 126);
+            this.lblXPNeeded.Location = new System.Drawing.Point(412, 189);
             this.lblXPNeeded.Name = "lblXPNeeded";
             this.lblXPNeeded.Size = new System.Drawing.Size(29, 13);
             this.lblXPNeeded.TabIndex = 14;
@@ -128,7 +137,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(211, 126);
+            this.label4.Location = new System.Drawing.Point(342, 189);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 13);
             this.label4.TabIndex = 15;
@@ -137,7 +146,7 @@
             // lblPl_Level
             // 
             this.lblPl_Level.AutoSize = true;
-            this.lblPl_Level.Location = new System.Drawing.Point(279, 153);
+            this.lblPl_Level.Location = new System.Drawing.Point(410, 216);
             this.lblPl_Level.Name = "lblPl_Level";
             this.lblPl_Level.Size = new System.Drawing.Size(26, 13);
             this.lblPl_Level.TabIndex = 16;
@@ -163,7 +172,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(200, 153);
+            this.label5.Location = new System.Drawing.Point(331, 216);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 19;
@@ -172,7 +181,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(200, 176);
+            this.label7.Location = new System.Drawing.Point(331, 239);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 13);
             this.label7.TabIndex = 20;
@@ -181,7 +190,7 @@
             // lblCurrentEXP
             // 
             this.lblCurrentEXP.AutoSize = true;
-            this.lblCurrentEXP.Location = new System.Drawing.Point(279, 176);
+            this.lblCurrentEXP.Location = new System.Drawing.Point(410, 239);
             this.lblCurrentEXP.Name = "lblCurrentEXP";
             this.lblCurrentEXP.Size = new System.Drawing.Size(28, 13);
             this.lblCurrentEXP.TabIndex = 21;
@@ -206,11 +215,95 @@
             this.lblTime.TabIndex = 23;
             this.lblTime.Text = "TIME";
             // 
+            // btnAttack
+            // 
+            this.btnAttack.Location = new System.Drawing.Point(40, 354);
+            this.btnAttack.Name = "btnAttack";
+            this.btnAttack.Size = new System.Drawing.Size(90, 26);
+            this.btnAttack.TabIndex = 24;
+            this.btnAttack.Text = "Attack";
+            this.btnAttack.UseVisualStyleBackColor = true;
+            this.btnAttack.Click += new System.EventHandler(this.btnAttack_Click);
+            // 
+            // lblDamage
+            // 
+            this.lblDamage.AutoSize = true;
+            this.lblDamage.Location = new System.Drawing.Point(37, 338);
+            this.lblDamage.Name = "lblDamage";
+            this.lblDamage.Size = new System.Drawing.Size(27, 13);
+            this.lblDamage.TabIndex = 25;
+            this.lblDamage.Text = "dmg";
+            // 
+            // rtbEvents
+            // 
+            this.rtbEvents.Location = new System.Drawing.Point(40, 65);
+            this.rtbEvents.Name = "rtbEvents";
+            this.rtbEvents.ReadOnly = true;
+            this.rtbEvents.Size = new System.Drawing.Size(285, 187);
+            this.rtbEvents.TabIndex = 26;
+            this.rtbEvents.Text = "";
+            // 
+            // dgvWeapons
+            // 
+            this.dgvWeapons.AllowUserToAddRows = false;
+            this.dgvWeapons.AllowUserToDeleteRows = false;
+            this.dgvWeapons.AllowUserToResizeRows = false;
+            this.dgvWeapons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvWeapons.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvWeapons.Enabled = false;
+            this.dgvWeapons.Location = new System.Drawing.Point(521, 61);
+            this.dgvWeapons.MultiSelect = false;
+            this.dgvWeapons.Name = "dgvWeapons";
+            this.dgvWeapons.ReadOnly = true;
+            this.dgvWeapons.RowHeadersVisible = false;
+            this.dgvWeapons.Size = new System.Drawing.Size(165, 191);
+            this.dgvWeapons.TabIndex = 27;
+            // 
+            // cboWeapon
+            // 
+            this.cboWeapon.FormattingEnabled = true;
+            this.cboWeapon.Location = new System.Drawing.Point(40, 386);
+            this.cboWeapon.Name = "cboWeapon";
+            this.cboWeapon.Size = new System.Drawing.Size(168, 21);
+            this.cboWeapon.TabIndex = 28;
+            // 
+            // lblCurrentWeapon
+            // 
+            this.lblCurrentWeapon.AutoSize = true;
+            this.lblCurrentWeapon.Location = new System.Drawing.Point(37, 419);
+            this.lblCurrentWeapon.Name = "lblCurrentWeapon";
+            this.lblCurrentWeapon.Size = new System.Drawing.Size(66, 13);
+            this.lblCurrentWeapon.TabIndex = 29;
+            this.lblCurrentWeapon.Text = "currWeapon";
+            // 
+            // dgvInventory
+            // 
+            this.dgvInventory.AllowUserToAddRows = false;
+            this.dgvInventory.AllowUserToDeleteRows = false;
+            this.dgvInventory.AllowUserToResizeRows = false;
+            this.dgvInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInventory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvInventory.Enabled = false;
+            this.dgvInventory.Location = new System.Drawing.Point(521, 271);
+            this.dgvInventory.MultiSelect = false;
+            this.dgvInventory.Name = "dgvInventory";
+            this.dgvInventory.ReadOnly = true;
+            this.dgvInventory.RowHeadersVisible = false;
+            this.dgvInventory.Size = new System.Drawing.Size(165, 191);
+            this.dgvInventory.TabIndex = 30;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 494);
+            this.ClientSize = new System.Drawing.Size(692, 494);
+            this.Controls.Add(this.dgvInventory);
+            this.Controls.Add(this.lblCurrentWeapon);
+            this.Controls.Add(this.cboWeapon);
+            this.Controls.Add(this.dgvWeapons);
+            this.Controls.Add(this.rtbEvents);
+            this.Controls.Add(this.lblDamage);
+            this.Controls.Add(this.btnAttack);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.btnBaseXP);
             this.Controls.Add(this.lblCurrentEXP);
@@ -230,6 +323,8 @@
             this.Controls.Add(this.btnName);
             this.Name = "Game";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvWeapons)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,6 +349,13 @@
         private System.Windows.Forms.Label lblCurrentEXP;
         private System.Windows.Forms.Button btnBaseXP;
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Button btnAttack;
+        private System.Windows.Forms.Label lblDamage;
+        private System.Windows.Forms.RichTextBox rtbEvents;
+        private System.Windows.Forms.DataGridView dgvWeapons;
+        private System.Windows.Forms.ComboBox cboWeapon;
+        private System.Windows.Forms.Label lblCurrentWeapon;
+        private System.Windows.Forms.DataGridView dgvInventory;
     }
 }
 

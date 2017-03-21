@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 namespace Helpers
 {
-    class RandomNumberGenerator
+    public static class RandomNumberGenerator
     {
         private static readonly RNGCryptoServiceProvider _generator = new RNGCryptoServiceProvider();
 

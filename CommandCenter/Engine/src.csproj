@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Items\Inventory.cs" />
+    <Compile Include="Items\Weapon.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Events\MessageEventArgs.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Experience.cs" />
     <Compile Include="Player.cs" />

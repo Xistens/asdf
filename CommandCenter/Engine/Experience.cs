@@ -2,7 +2,7 @@
 
 namespace src
 {
-    static class Experience
+    public static class Experience
     {
         // What level the mob must be to be "grey" for player
         private static uint GetGrayLevel(uint pl_level)
@@ -49,7 +49,6 @@ namespace src
             }
             else
             {
-                // Victim > "grey" level for player
                 uint gray_level = GetGrayLevel(pl_level);
                 if (victim_level > gray_level)
                 {

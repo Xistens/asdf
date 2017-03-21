@@ -7,8 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+
 
 using src;
+using src.Events;
+using src.Items;
 using Helpers;
 
 namespace CommandCenter
@@ -24,22 +28,97 @@ namespace CommandCenter
 
             _Player = Player.CreateDefaultPlayer();
             UpdateDisplay();
-            
+
+            _Player.OnMessage += DisplayMessage;
+
+            // DataGrid Weapons
+            dgvWeapons.RowHeadersVisible = false;
+            dgvWeapons.AutoGenerateColumns = false;
+            dgvWeapons.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Name",
+                DataPropertyName = "Name"
+            });
+            dgvWeapons.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Damage",
+                DataPropertyName = "GetBaseDamage"
+            });
+            dgvWeapons.ScrollBars = ScrollBars.Vertical;
+            dgvWeapons.DataSource = World.weapons;
+
+            // DataGrid Inventory
+            dgvInventory.RowHeadersVisible = false;
+            dgvInventory.AutoGenerateColumns = false;
+            dgvInventory.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Name",
+                DataPropertyName = "Description"
+            });
+
+            dgvInventory.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Quantity",
+                DataPropertyName = "Quantity"
+            });
+            dgvInventory.ScrollBars = ScrollBars.Vertical;
+            dgvInventory.DataSource = _Player.PlayerInventory;
+
+
+            // ComboBox
+            cboWeapon.DataSource = World.weapons;
+            cboWeapon.DisplayMember = "Name";
+            cboWeapon.ValueMember = "Id";
+
+            if (_Player.CurrentWeapon != null)
+            {
+                cboWeapon.SelectedItem = _Player.CurrentWeapon;
+            }
+
+            cboWeapon.SelectedIndexChanged += cboWeapons_SelectedIndexChanged;
+
+        }
+
+        private void DisplayMessage(object sender, MessageEventArgs messageEventArgs)
+        {
+            rtbEvents.Text += messageEventArgs.Message + Environment.NewLine;
+
+            if(messageEventArgs.AddExtraNewLine)
+            {
+                rtbEvents.Text += Environment.NewLine;
+            }
+
+            rtbEvents.SelectionStart = rtbEvents.Text.Length;
+            rtbEvents.ScrollToCaret();
+        }
+
+        private void PlayerOnPropertyChange(Object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName == "Weapon")
+            {
+                cboWeapon.DataSource = World.weapons;
+            }
+        }
+
+        private void cboWeapons_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int weaponId = Convert.ToInt32(cboWeapon.SelectedValue);
+            _Player.SetCurrentWeapon(weaponId);
+            UpdateDisplay();
         }
 
         private void UpdateDisplay()
         {
             uint lvl = _Player.UnitLevel;
-            Experience xp = new Experience();
             uint plPlayerLevel = _Player.UnitLevel;
 
-            lblGain.Text = xp.BaseGain(plPlayerLevel, plPlayerLevel).ToString();
-            lblXPNeeded.Text = xp.XPRequired(_Player.UnitLevel).ToString();
+            lblGain.Text = Experience.BaseGain(plPlayerLevel, plPlayerLevel).ToString();
+            lblXPNeeded.Text = Experience.XPRequired(_Player.UnitLevel).ToString();
             lblPl_Level.Text = lvl.ToString();
-            lblCurrentEXP.Text = _Player.ExperiencePoints.ToString();
+            lblCurrentEXP.Text = _Player.experiencePoints.ToString();
+            lblCurrentWeapon.Text = _Player.CurrentWeapon.Name.ToString();
 
-            AppTimer time = new AppTimer();
-            lblTime.Text = time.Test().ToString();
+            lblTime.Text = _Player.IsDead.ToString();
         }
 
         private void btnName_Click(object sender, EventArgs e)
@@ -55,10 +134,14 @@ namespace CommandCenter
         private void btnBaseXP_Click(object sender, EventArgs e)
         {
             uint plPlayerLevel = _Player.UnitLevel;
-            Experience EXP = new Experience();
-            uint giveExp = EXP.BaseGain(plPlayerLevel, plPlayerLevel);
+            uint giveExp = Experience.BaseGain(plPlayerLevel, plPlayerLevel);
             _Player.SetExperience(giveExp);
             UpdateDisplay();
+        }
+
+        private void btnAttack_Click(object sender, EventArgs e)
+        {
+            lblDamage.Text = _Player.CalculateDamage().ToString();
         }
     }
 }
