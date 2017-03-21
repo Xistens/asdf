@@ -25,8 +25,6 @@ namespace src
         public event EventHandler<MessageEventArgs> OnMessage;
         public event PropertyChangedEventHandler PropertyChanged;
 
-
-
         public uint CurrentHealth
         {
             get { return _currentHealth; }
@@ -73,7 +71,7 @@ namespace src
         }
 
         // Calculating base damage
-        public int CalculatesDamage()
+        public int CalculateDamage()
         {
             int min_damage, max_damage;
 
