@@ -25,6 +25,17 @@ namespace src
         {
             Player player = new Player(100, 100);
             player.PlayerInventory.Add(new Inventory(World.ItemByID(1), 1));
+
+            /*
+             * player.Inventory = new Inventory(player)
+             * player.Health = new Health(player);
+             * player.Mount = new Mount(player);
+             * player.Armor = new Armor(player);
+             * 
+             * Armor, Mount etc kan være underclasser men må ikke
+             * 
+             * this.Inventory.getItem(id or name)
+             * */
             return player;
         }
 
@@ -33,6 +44,7 @@ namespace src
             get { return PlayerInventory.Where(x => x.Details is Weapon).Select(x => x.Details as Weapon).ToList(); }
         }
 
+        // Må endres, legge til object
         public void SetCurrentWeapon(int id)
         {
             CurrentWeapon = (Weapon)World.ItemByID(id);
