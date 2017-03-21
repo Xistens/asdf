@@ -73,7 +73,7 @@ namespace src
         }
 
         // Calculating base damage
-        public int CalculateDamage()
+        public int CalculatesDamage()
         {
             int min_damage, max_damage;
 
