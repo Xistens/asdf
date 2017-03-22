@@ -27,5 +27,14 @@
             _unit = unit;
             LevelRequirement = levelRequirement;
         }
+
+        // Check if player meets level requirement
+        public bool CheckLevelRequirement()
+        {
+
+            if (_unit.UnitLevel < LevelRequirement)
+                return false;
+            return true;
+        }
     }
 }

@@ -24,32 +24,13 @@ namespace src
         public static Player CreateDefaultPlayer()
         {
             Player player = new Player(100, 100);
-            //player.PlayerInventory.Add(new Inventory(World.ItemByID(1), 1));
 
             /*
-             * player.Inventory = new Inventory(player)
-             * player.Health = new Health(player);
-             * player.Mount = new Mount(player);
-             * player.Armor = new Armor(player);
-             * 
              * Armor, Mount etc kan være underclasser men må ikke
              * 
              * this.Inventory.getItem(id or name)
              * */
             return player;
-        }
-
-        // Check if player meets level requirement
-        public bool LevelRequirement(Item itemToCheck)
-        {
-            if(itemToCheck != null)
-            {
-                uint lvlReq = itemToCheck.LevelRequirement;
-                if (UnitLevel < lvlReq)
-                    return false;
-                return true;
-            }
-            return false;
         }
         
         public void EquipWeapon(int id)
@@ -70,7 +51,7 @@ namespace src
                 }
                 else
                 {
-                    if (LevelRequirement((Weapon)weaponToEquip))
+                    if (weaponToEquip.CheckLevelRequirement())
                     {
                         CurrentWeapon = weaponToEquip;
                     }
