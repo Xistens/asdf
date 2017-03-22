@@ -56,10 +56,12 @@ namespace src
         {
             if (id == 0)
             {
-                CurrentWeapon = World.weapons[0];
+                // Unequip weapon
+                CurrentWeapon = null;
             }
             else
             {
+                // Find Weapons in inventory that matches the given id
                 Weapon weaponToEquip = PlayerInventory.Weapons.SingleOrDefault(x => x.ID == id);
 
                 if (weaponToEquip == null)
@@ -74,7 +76,7 @@ namespace src
                     }
                     else
                     {
-                        RaiseMessage("Too low level to use that weapon!");
+                        RaiseMessage("Level too low to use weapon!");
                     }
                 }
             }
