@@ -39,41 +39,17 @@ namespace src
         }
 
         // Add an Item {Object} to the UnitInventory {InventoryObject} List
-        public void AddItemToInventory(Item itemToAdd, uint quantity = 1)
+        public void AddItemToInventory(Item itemToAdd, Unit unit, uint quantity = 1)
         {
-
             InventoryItem itemExists = ExistsInInventory(itemToAdd);
             if (itemExists == null)
             {
+                itemToAdd.ItemUnit = unit;
                 UnitInventory.Add(new InventoryItem(itemToAdd, quantity));
             }
             else
             {
                 itemExists.Quantity += quantity;
-            }
-        }
-
-        // Må endres, legge til object
-        public void EquipWeapon(int id)
-        {
-            Weapon weaponToEquip = World.weapons[id];
-
-            if (id == 0)
-            {
-                _unit.CurrentWeapon = weaponToEquip;
-            }
-            else
-            {
-                InventoryItem item = ExistsInInventory(weaponToEquip);
-
-                if (item == null)
-                {
-                    _unit.RaiseMessage("Cannot equip weapon.", true);
-                }
-                else
-                {
-                    _unit.CurrentWeapon = weaponToEquip;
-                }
             }
         }
     }

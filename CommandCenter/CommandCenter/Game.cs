@@ -105,7 +105,7 @@ namespace CommandCenter
         private void cboWeapons_SelectedIndexChanged(object sender, EventArgs e)
         {
             int weaponId = Convert.ToInt32(cboWeapon.SelectedValue);
-            _Player.PlayerInventory.EquipWeapon(weaponId);
+            _Player.EquipWeapon(weaponId);
             UpdateDisplay();
         }
 
@@ -157,7 +157,7 @@ namespace CommandCenter
         private void btnAddWeapon_Click(object sender, EventArgs e)
         {
             int last = cboWeapon.SelectedIndex;
-            _Player.PlayerInventory.AddItemToInventory(World.weapons[2], 1);
+            _Player.PlayerInventory.AddItemToInventory(World.weapons[3], _Player, 1);
             cboWeapon.DataSource = _Player.PlayerInventory.Weapons;
 
             cboWeapon.SelectedIndex = last;

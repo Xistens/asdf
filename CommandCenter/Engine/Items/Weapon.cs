@@ -4,7 +4,6 @@
     {
         public int MinimumDamage { get; set; }
         public int MaximumDamage { get; set; }
-        public uint LevelRequirement { get; set; }
 
         public string GetBaseDamage
         {
@@ -13,7 +12,7 @@
         }
 
         public Weapon(Unit unit, int id, string name, string namePlural, float price,
-            int minDmg, int maxDmg) : base(unit, id, name, namePlural, price)
+            int minDmg, int maxDmg, uint levelRequirement) : base(unit, id, name, namePlural, price, levelRequirement)
         {
             MinimumDamage = minDmg;
             MaximumDamage = maxDmg;

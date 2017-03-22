@@ -17,8 +17,8 @@ namespace src
         private Player(uint currentHealth, uint maximumHealth) : base(currentHealth, maximumHealth)
         {
             PlayerInventory = new Inventory(this);
-            PlayerInventory.AddItemToInventory(World.weapons[1]);
-            PlayerInventory.EquipWeapon(0);
+            PlayerInventory.AddItemToInventory(World.weapons[1], this);
+            EquipWeapon(0);
         }
 
         public static Player CreateDefaultPlayer()
@@ -37,6 +37,47 @@ namespace src
              * this.Inventory.getItem(id or name)
              * */
             return player;
+        }
+
+        // Check if player meets level requirement
+        public bool LevelRequirement(Item itemToCheck)
+        {
+            if(itemToCheck != null)
+            {
+                uint lvlReq = itemToCheck.LevelRequirement;
+                if (UnitLevel < lvlReq)
+                    return false;
+                return true;
+            }
+            return false;
+        }
+        
+        public void EquipWeapon(int id)
+        {
+            if (id == 0)
+            {
+                CurrentWeapon = World.weapons[0];
+            }
+            else
+            {
+                Weapon weaponToEquip = PlayerInventory.Weapons.SingleOrDefault(x => x.ID == id);
+
+                if (weaponToEquip == null)
+                {
+                    RaiseMessage("There is no weapon to equip.");
+                }
+                else
+                {
+                    if (LevelRequirement((Weapon)weaponToEquip))
+                    {
+                        CurrentWeapon = weaponToEquip;
+                    }
+                    else
+                    {
+                        RaiseMessage("Too low level to use that weapon!");
+                    }
+                }
+            }
         }
 
         // Adds experience points to the player. Test function
