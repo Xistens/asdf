@@ -62,11 +62,11 @@ namespace CommandCenter
                 DataPropertyName = "Quantity"
             });
             dgvInventory.ScrollBars = ScrollBars.Vertical;
-            dgvInventory.DataSource = _Player.PlayerInventory;
+            dgvInventory.DataSource = _Player.PlayerInventory.UnitInventory;
 
 
             // ComboBox players weapon from inventory
-            cboWeapon.DataSource = _Player.Weapons;
+            cboWeapon.DataSource = _Player.PlayerInventory.Weapons;
             cboWeapon.DisplayMember = "Name";
             cboWeapon.ValueMember = "Id";
 
@@ -97,7 +97,7 @@ namespace CommandCenter
         {
             if (propertyChangedEventArgs.PropertyName == "Weapons")
             {
-                cboWeapon.DataSource = _Player.Weapons;
+                cboWeapon.DataSource = _Player.PlayerInventory.Weapons;
             }
         }
 
@@ -105,7 +105,7 @@ namespace CommandCenter
         private void cboWeapons_SelectedIndexChanged(object sender, EventArgs e)
         {
             int weaponId = Convert.ToInt32(cboWeapon.SelectedValue);
-            _Player.SetCurrentWeapon(weaponId);
+            _Player.EquipWeapon(weaponId);
             UpdateDisplay();
         }
 
@@ -113,13 +113,21 @@ namespace CommandCenter
         {
             uint lvl = _Player.UnitLevel;
             uint plPlayerLevel = _Player.UnitLevel;
+            Weapon CurrWeapon = _Player.CurrentWeapon;
+
+            if (CurrWeapon == null)
+            {
+                lblCurrentWeapon.Text = "";
+            }
+            else
+            {
+                lblCurrentWeapon.Text = CurrWeapon.Name.ToString();
+            }
 
             lblGain.Text = Experience.BaseGain(plPlayerLevel, plPlayerLevel).ToString();
             lblXPNeeded.Text = Experience.XPRequired(_Player.UnitLevel).ToString();
             lblPl_Level.Text = lvl.ToString();
             lblCurrentEXP.Text = _Player.experiencePoints.ToString();
-            lblCurrentWeapon.Text = _Player.CurrentWeapon.Name.ToString();
-
             lblTime.Text = _Player.IsDead.ToString();
         }
 
@@ -148,8 +156,11 @@ namespace CommandCenter
 
         private void btnAddWeapon_Click(object sender, EventArgs e)
         {
-            _Player.AddItemToInventory(World.weapons[2], 1);
-            cboWeapon.DataSource = _Player.Weapons;
+            int last = cboWeapon.SelectedIndex;
+            _Player.PlayerInventory.AddItemToInventory(World.weapons[2], 1);
+            cboWeapon.DataSource = _Player.PlayerInventory.Weapons;
+
+            cboWeapon.SelectedIndex = last;
         }
     }
 }

@@ -11,20 +11,20 @@ namespace src
 {
     public class Player : Unit
     {
-
+        public Inventory PlayerInventory;
         public uint experiencePoints { get; private set; }
-        public BindingList<Inventory> PlayerInventory { get; set; }
 
         private Player(uint currentHealth, uint maximumHealth) : base(currentHealth, maximumHealth)
         {
-            SetCurrentWeapon(1);
-            PlayerInventory = new BindingList<Inventory>();
+            PlayerInventory = new Inventory();
+            PlayerInventory.AddItemToInventory(World.weapons[0]);
+            EquipWeapon(0);
         }
 
         public static Player CreateDefaultPlayer()
         {
             Player player = new Player(100, 100);
-            player.PlayerInventory.Add(new Inventory(World.ItemByID(1), 1));
+            //player.PlayerInventory.Add(new Inventory(World.ItemByID(1), 1));
 
             /*
              * player.Inventory = new Inventory(player)
@@ -39,32 +39,20 @@ namespace src
             return player;
         }
 
-        public List<Weapon> Weapons
-        {
-            get { return PlayerInventory.Where(x => x.Details is Weapon).Select(x => x.Details as Weapon).ToList(); }
-        }
-
         // Må endres, legge til object
-        public void SetCurrentWeapon(int id)
+        public void EquipWeapon(int id)
         {
-            CurrentWeapon = (Weapon)World.ItemByID(id);
-        }
+            Weapon weaponToEquip = World.weapons[id];
+            InventoryItem item = PlayerInventory.ExistsInInventory(weaponToEquip);
 
-        public void AddItemToInventory(Item itemToAdd, int quantity = 1)
-        {
-            Inventory existingItemInInventory = PlayerInventory.SingleOrDefault(x => x.Details.ID == itemToAdd.ID);
-
-            if (existingItemInInventory == null)
+            if (item == null)
             {
-                PlayerInventory.Add(new Inventory(itemToAdd, quantity));
+                RaiseMessage("Cannot equip weapon.", true);
             }
             else
             {
-                existingItemInInventory.Quantity += quantity;
+                CurrentWeapon = weaponToEquip;
             }
-
-            RaiseInventoryChangedEvent(itemToAdd);
-
         }
 
         // Adds experience points to the player. Test function

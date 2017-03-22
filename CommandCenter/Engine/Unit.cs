@@ -19,7 +19,7 @@ namespace src
         protected int unit_min_damage { get; set; }
         protected int unit_max_damage { get; set; }
         protected int unit_crit_chance { get; set; }
-        public Weapon CurrentWeapon { get; protected set; }
+        public Weapon CurrentWeapon { get; set; }
 
 
         public event EventHandler<MessageEventArgs> OnMessage;
@@ -110,7 +110,7 @@ namespace src
             return RandomNumberGenerator.NumberBetween(min_damage, max_damage);
         }
 
-        private void RaiseMessage(string message, bool addExtraNewLine = false)
+        protected void RaiseMessage(string message, bool addExtraNewLine = false)
         {
             OnMessage?.Invoke(this, new MessageEventArgs(message, addExtraNewLine));
         }

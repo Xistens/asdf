@@ -9,10 +9,10 @@
         public float Price { get; set; }
         private Unit _unit { get; set; }
 
-        public Unit SetUnit
+        public Unit ItemUnit
         {
             get { return _unit; }
-            set { _unit = value; }
+            protected set { _unit = value; }
         } 
 
         public Item (Unit unit, int id, string name, string namePlural, float price)
