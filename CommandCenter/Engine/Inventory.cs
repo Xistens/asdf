@@ -9,12 +9,14 @@ namespace src
 {
     public class Inventory
     {
+        private Unit _unit { get; set; }
         public BindingList<InventoryItem> UnitInventory { get; set; }
 
         // Constructor
-        public Inventory()
+        public Inventory(Unit unit)
         {
             UnitInventory = new BindingList<InventoryItem>();
+            _unit = unit;
         }
 
         // Finds all the weapons in inventory
@@ -48,6 +50,30 @@ namespace src
             else
             {
                 itemExists.Quantity += quantity;
+            }
+        }
+
+        // Må endres, legge til object
+        public void EquipWeapon(int id)
+        {
+            Weapon weaponToEquip = World.weapons[id];
+
+            if (id == 0)
+            {
+                _unit.CurrentWeapon = weaponToEquip;
+            }
+            else
+            {
+                InventoryItem item = ExistsInInventory(weaponToEquip);
+
+                if (item == null)
+                {
+                    _unit.RaiseMessage("Cannot equip weapon.", true);
+                }
+                else
+                {
+                    _unit.CurrentWeapon = weaponToEquip;
+                }
             }
         }
     }

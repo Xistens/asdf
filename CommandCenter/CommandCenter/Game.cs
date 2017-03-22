@@ -105,7 +105,7 @@ namespace CommandCenter
         private void cboWeapons_SelectedIndexChanged(object sender, EventArgs e)
         {
             int weaponId = Convert.ToInt32(cboWeapon.SelectedValue);
-            _Player.EquipWeapon(weaponId);
+            _Player.PlayerInventory.EquipWeapon(weaponId);
             UpdateDisplay();
         }
 

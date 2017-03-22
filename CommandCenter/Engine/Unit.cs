@@ -110,7 +110,7 @@ namespace src
             return RandomNumberGenerator.NumberBetween(min_damage, max_damage);
         }
 
-        protected void RaiseMessage(string message, bool addExtraNewLine = false)
+        public void RaiseMessage(string message, bool addExtraNewLine = false)
         {
             OnMessage?.Invoke(this, new MessageEventArgs(message, addExtraNewLine));
         }

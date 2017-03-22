@@ -17,12 +17,13 @@ namespace src
             PopulateWeapons();
         }
 
-        // Use GUID instead?
+        // Use GUID instead
         private static void PopulateWeapons()
         {
-            weapons.Add(new Weapon(null, 0, "Broken Dagger", "Daggers", 0.2f, 1, 5));
-            weapons.Add(new Weapon(null, 1, "Rock Mace", "Maces", 0.2f, 3, 8));
-            weapons.Add(new Weapon(null, 2, "Well-Used Sword", "Swords", 0.5f, 100, 120));
+            weapons.Add(new Weapon(null, 0, "", "", 0f, 0, 0));
+            weapons.Add(new Weapon(null, 1, "Broken Dagger", "Daggers", 0.2f, 1, 5));
+            weapons.Add(new Weapon(null, 2, "Rock Mace", "Maces", 0.2f, 3, 8));
+            weapons.Add(new Weapon(null, 3, "Well-Used Sword", "Swords", 0.5f, 100, 120));
         }
 
         public static Item ItemByID(int id)

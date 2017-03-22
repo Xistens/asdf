@@ -16,9 +16,9 @@ namespace src
 
         private Player(uint currentHealth, uint maximumHealth) : base(currentHealth, maximumHealth)
         {
-            PlayerInventory = new Inventory();
-            PlayerInventory.AddItemToInventory(World.weapons[0]);
-            EquipWeapon(0);
+            PlayerInventory = new Inventory(this);
+            PlayerInventory.AddItemToInventory(World.weapons[1]);
+            PlayerInventory.EquipWeapon(0);
         }
 
         public static Player CreateDefaultPlayer()
@@ -37,22 +37,6 @@ namespace src
              * this.Inventory.getItem(id or name)
              * */
             return player;
-        }
-
-        // Må endres, legge til object
-        public void EquipWeapon(int id)
-        {
-            Weapon weaponToEquip = World.weapons[id];
-            InventoryItem item = PlayerInventory.ExistsInInventory(weaponToEquip);
-
-            if (item == null)
-            {
-                RaiseMessage("Cannot equip weapon.", true);
-            }
-            else
-            {
-                CurrentWeapon = weaponToEquip;
-            }
         }
 
         // Adds experience points to the player. Test function
