@@ -205,7 +205,6 @@
             this.btnBaseXP.TabIndex = 22;
             this.btnBaseXP.Text = "Base exp";
             this.btnBaseXP.UseVisualStyleBackColor = true;
-            this.btnBaseXP.Click += new System.EventHandler(this.btnBaseXP_Click);
             // 
             // lblTime
             // 
@@ -224,7 +223,7 @@
             this.btnAttack.TabIndex = 24;
             this.btnAttack.Text = "Attack";
             this.btnAttack.UseVisualStyleBackColor = true;
-            this.btnAttack.Click += new System.EventHandler(this.btnAttack_Click);
+            
             // 
             // lblDamage
             // 
@@ -302,7 +301,6 @@
             this.btnAddWeapon.TabIndex = 31;
             this.btnAddWeapon.Text = "Add Weapon";
             this.btnAddWeapon.UseVisualStyleBackColor = true;
-            this.btnAddWeapon.Click += new System.EventHandler(this.btnAddWeapon_Click);
             // 
             // Game
             // 

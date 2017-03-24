@@ -77,6 +77,9 @@ namespace CommandCenter
 
             cboWeapon.SelectedIndexChanged += cboWeapons_SelectedIndexChanged;
 
+            btnAttack.Click += new EventHandler(Button_Click);
+            btnAddWeapon.Click += new EventHandler(Button_Click);
+            btnBaseXP.Click += new EventHandler(Button_Click);
         }
 
         private void DisplayMessage(object sender, MessageEventArgs messageEventArgs)
@@ -90,6 +93,32 @@ namespace CommandCenter
 
             rtbEvents.SelectionStart = rtbEvents.Text.Length;
             rtbEvents.ScrollToCaret();
+        }
+
+        // Testing...
+        private void Button_Click(object sender, EventArgs e)
+        {
+            switch ((sender as Button).Name)
+            {
+                case "btnAttack":
+                    lblDamage.Text = _Player.CalculateDamage().ToString();
+                    break;
+                case "btnAddWeapon":
+                    int last = cboWeapon.SelectedIndex;
+                    _Player.PlayerInventory.AddItemToInventory(World.weapons[3], _Player, 1);
+                    cboWeapon.DataSource = _Player.PlayerInventory.Weapons;
+
+                    cboWeapon.SelectedIndex = last;
+                    break;
+                case "btnBaseXP":
+                    uint plPlayerLevel = _Player.UnitLevel;
+                    uint giveExp = Experience.BaseGain(plPlayerLevel, plPlayerLevel);
+                    _Player.SetExperience(giveExp);
+                    UpdateDisplay();
+                    break;
+                default:
+                    break;
+            }
         }
 
 
@@ -139,28 +168,6 @@ namespace CommandCenter
             _Player.SetExperience(giveExp);
             UpdateDisplay();
 
-        }
-
-        private void btnBaseXP_Click(object sender, EventArgs e)
-        {
-            uint plPlayerLevel = _Player.UnitLevel;
-            uint giveExp = Experience.BaseGain(plPlayerLevel, plPlayerLevel);
-            _Player.SetExperience(giveExp);
-            UpdateDisplay();
-        }
-
-        private void btnAttack_Click(object sender, EventArgs e)
-        {
-            lblDamage.Text = _Player.CalculateDamage().ToString();
-        }
-
-        private void btnAddWeapon_Click(object sender, EventArgs e)
-        {
-            int last = cboWeapon.SelectedIndex;
-            _Player.PlayerInventory.AddItemToInventory(World.weapons[3], _Player, 1);
-            cboWeapon.DataSource = _Player.PlayerInventory.Weapons;
-
-            cboWeapon.SelectedIndex = last;
         }
     }
 }

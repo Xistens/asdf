@@ -10,7 +10,7 @@ namespace src.Items
     public class InventoryItem : INotifyPropertyChanged
     {
         private Item _Details;
-        private uint _Quantity;
+        private int _Quantity;
 
         public event PropertyChangedEventHandler PropertyChanged;
         
@@ -24,15 +24,20 @@ namespace src.Items
             }
         }
 
-        public uint Quantity
+        public int Quantity
         {
             get { return _Quantity; }
-            set
+            private set
             {
                 _Quantity = value;
                 OnPropertyChanged("Quantity");
                 OnPropertyChanged("Description");
             }
+        }
+
+        public void AddToQuantity(int amountToAdd)
+        {
+            Quantity += amountToAdd;
         }
 
         // Return Description
@@ -42,7 +47,7 @@ namespace src.Items
         }
 
         // Constructor
-        public InventoryItem(Item details, uint quantity = 1)
+        public InventoryItem(Item details, int quantity = 1)
         {
             _Details = details;
             _Quantity = quantity;

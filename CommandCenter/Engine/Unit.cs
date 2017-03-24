@@ -21,7 +21,6 @@ namespace src
         protected int unit_crit_chance { get; set; }
         public Weapon CurrentWeapon { get; set; }
 
-
         public event EventHandler<MessageEventArgs> OnMessage;
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -108,6 +107,11 @@ namespace src
             }
 
             return RandomNumberGenerator.NumberBetween(min_damage, max_damage);
+        }
+
+        protected virtual bool Attack()
+        {
+            return true;
         }
 
         public void RaiseMessage(string message, bool addExtraNewLine = false)

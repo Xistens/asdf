@@ -12,7 +12,8 @@
         }
 
         public Weapon(Unit unit, int id, string name, string namePlural, float price,
-            int minDmg, int maxDmg, uint levelRequirement) : base(unit, id, name, namePlural, price, levelRequirement)
+            int minDmg, int maxDmg, uint levelRequirement, int maxStackableQuantity) : base(unit, id, name, namePlural,
+                price, levelRequirement, maxStackableQuantity)
         {
             MinimumDamage = minDmg;
             MaximumDamage = maxDmg;

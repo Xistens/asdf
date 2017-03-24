@@ -12,6 +12,5 @@ namespace src.Events
             Message = message;
             AddExtraNewLine = addExtraNewLine;
         }
-
     }
 }
